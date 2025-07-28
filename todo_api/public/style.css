@@ -1,0 +1,219 @@
+/* public/style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f06d06, #f7ba2b); /* گرادیانت زیبا */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* شروع از بالا */
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    animation: fadeIn 1s ease-out; /* انیمیشن ورود */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    color: #f06d06; /* رنگ نارنجی شاد */
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 i {
+    margin-left: 10px;
+    color: #f7ba2b; /* رنگ طلایی */
+}
+
+/* فرم اضافه کردن کار */
+#todo-form {
+    display: flex;
+    flex-wrap: wrap; /* برای ریسپانسیو بودن */
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#todo-form input[type="text"] {
+    flex: 1; /* فضای موجود رو بگیره */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    min-width: 180px; /* حداقل عرض برای هر اینپوت */
+}
+
+#todo-form input[type="text"]:focus {
+    border-color: #f06d06;
+    box-shadow: 0 0 8px rgba(240, 109, 6, 0.2);
+    outline: none;
+}
+
+#todo-form button {
+    background-color: #28a745; /* سبز شاد برای اضافه کردن */
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* اگه فضای کافی باشه، بزرگتر بشه */
+}
+
+#todo-form button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+#todo-form button i {
+    margin-left: 8px;
+}
+
+/* لیست وظایف */
+#todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+#todo-list li {
+    background-color: #f9f9f9;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-right: 5px solid #f06d06; /* خط نارنجی سمت راست */
+}
+
+#todo-list li.completed {
+    background-color: #e6ffe6; /* رنگ سبز روشن برای کارهای تکمیل شده */
+    border-right-color: #28a745; /* خط سبز برای کارهای تکمیل شده */
+    opacity: 0.7;
+}
+
+#todo-list li.completed .todo-text h3,
+#todo-list li.completed .todo-text p {
+    text-decoration: line-through; /* خط کشیدن روی متن */
+    color: #666;
+}
+
+.todo-text {
+    text-align: right; /* متن راست چین */
+    flex-grow: 1;
+    margin-left: 15px; /* فاصله از دکمه‌ها */
+}
+
+.todo-text h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.todo-text p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.todo-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.todo-actions button:hover {
+    transform: translateY(-1px);
+}
+
+.todo-actions .complete-btn {
+    color: #28a745; /* سبز برای تیک */
+}
+
+.todo-actions .complete-btn:hover {
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.todo-actions .delete-btn {
+    color: #dc3545; /* قرمز برای حذف */
+}
+
+.todo-actions .delete-btn:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* برای نمایش بهتر در موبایل */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    #todo-form {
+        flex-direction: column; /* اینپوت‌ها زیر هم */
+    }
+    #todo-form input[type="text"],
+    #todo-form button {
+        width: 100%;
+    }
+    #todo-list li {
+        flex-direction: column;
+        align-items: flex-end; /* متن و دکمه‌ها راست چین */
+        padding: 15px;
+    }
+    .todo-text {
+        width: 100%;
+        text-align: right;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+    .todo-actions {
+        width: 100%;
+        justify-content: flex-end; /* دکمه‌ها راست چین */
+    }
+}
+
+/* افکت بارگذاری */
+.loading {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #555;
+}
